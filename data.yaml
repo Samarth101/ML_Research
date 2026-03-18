@@ -1,4 +1,4 @@
-# Path to the root of your new dataset
+# Path dataset(add relative path)
 path: ./yolo_dataset 
 train: images/train  # train images (relative to 'path')
 val: images/val      # val images (relative to 'path')
