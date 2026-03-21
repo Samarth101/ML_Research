@@ -4,7 +4,7 @@ Standard object detection models cant detect greatly in low-light environments. 
 
 By utilizing an unsupervised CycleGAN to translate low-illumination images into daylight images, we successfully recover hidden physical geometries without paired data, enabling standard YOLOv8 models to detect objects in pitch-black footage.
 
-## 📊 Datasets
+## Datasets
 
 This project relies on two distinct datasets for the generative and discriminative pipelines:
 
@@ -15,7 +15,7 @@ This project relies on two distinct datasets for the generative and discriminati
    * **Use:** Domain Translation (CycleGAN)
    * **Details:** Unpaired high/low illumination images used to train the daylight Generator.
 
-## 🗂 Repository Structure
+## Repository Structure
 
 * `configs/` - YOLOv8 YAML configurations for baseline and enhanced datasets.
 * `weights/` - Pre-trained model weights (CycleGAN generators and YOLO `.pt` files).
@@ -23,7 +23,7 @@ This project relies on two distinct datasets for the generative and discriminati
 * `02_gan_pipeline/` - PyTorch implementation of the CycleGAN and the dataset enhancement script.
 * `03_yolo_pipeline/` - Baseline training, zero-shot testing, and enhanced dataset retraining notebooks.
 
-## 🚀 Quickstart & Installation
+## Quickstart & Installation
 
 Clone the repository and install the dependencies. I trained pipeline on google colab and local machine , so change directories whereever needed
 
@@ -32,9 +32,9 @@ git clone [https://github.com/YOUR_USERNAME/Night-Owl-Project.git](https://githu
 cd Night-Owl-Project
 pip install torch torchvision ultralytics pillow matplotlib
 
+```
 
-
-⚙️ Execution Pipeline
+## Execution Pipeline
 To reproduce the results, execute the notebooks in the following sequential order:
 
 Phase 1: Preparation & Baseline
@@ -51,3 +51,10 @@ Phase 3: Final Evaluation
 Run 03_yolo_pipeline/test_zeroshot.ipynb for qualitative visual comparisons.
 
 Run 03_yolo_pipeline/yolo_training_after_enhancement.ipynb to train the final model and output the enhanced mAP scores.
+
+
+## Results
+
+| **Baseline YOLOv8** (Trained on Dark) | 0.794 | High machine accuracy, low human visibility. |
+| **Domain Shift Test** (Dark model on Bright data) | 0.646 | Expected performance drop due to generative artifacts. |
+| **Project Night Owl** (Fully Enhanced Pipeline) | 0.750 | **Optimal Balance:** Maintains 75% machine accuracy while restoring 100% human visual clarity. |
