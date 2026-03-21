@@ -37,23 +37,28 @@ pip install torch torchvision ultralytics pillow matplotlib
 ## Execution Pipeline
 To reproduce the results, execute the notebooks in the following sequential order:
 
-Phase 1: Preparation & Baseline
+** Phase 1: Preparation & Baseline **
 Run 01_data_preprocessing/convert_exdark.ipynb to format the dataset.
 
 Run 03_yolo_pipeline/yolo_training.ipynb to establish the dark-image baseline metrics.
 
-Phase 2: Generative Enhancement
+** Phase 2: Generative Enhancement **
 Run 02_gan_pipeline/GAN.ipynb to train the CycleGAN on the LOL dataset (Recommended: T4 GPU or higher).
 
 Run 02_gan_pipeline/enhance_dataset.ipynb to process the entire ExDark dataset through the trained daylight Generator.
 
-Phase 3: Final Evaluation
+** Phase 3: Final Evaluation **
 Run 03_yolo_pipeline/test_zeroshot.ipynb for qualitative visual comparisons.
 
 Run 03_yolo_pipeline/yolo_training_after_enhancement.ipynb to train the final model and output the enhanced mAP scores.
 
 
 ## Results
+** Initially trained Model
+![alt text](Runs/exdark_baseline_1/BoxPR_curve.png)
+
+** trained on enhanced dataset
+![alt text](Runs/exdark_enhanced_1/BoxPR_curve.png)
 
 | **Baseline YOLOv8** (Trained on Dark) | 0.794 | High machine accuracy, low human visibility. |
 | **Domain Shift Test** (Dark model on Bright data) | 0.646 | Expected performance drop due to generative artifacts. |
